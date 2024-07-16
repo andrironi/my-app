@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetAlert2 Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <style>
+        body{
+            background-color: blueviolet;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .statis1 {
+            font-size: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: solid white 1px;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            color:white;
+        }
+
+        .swal2-modal{
+            font-size: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: solid white 1px;
+            border-radius: 10px;
+            color : white;
+        }
+
+        .swal2-actions {
+            position: relative;
+            border-radius: 1px;
+        }
+
+        .swal2-cancel {
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <button id="startButton" >Mulai</button>
+
+    <div id="staticPage" class="hidden statis1">
+        <p>Apakah Anda ingin memilih "Mau"?</p>
+        <button id="mauButton">Mau</button>
+        <button id="tidakMauButton">Tidak Mau</button>
+    </div>
+
+    <p id="staticPage1" class="hidden statis1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        <br>
+        Repellendus aliquam repudiandae dignissimos voluptatum magnam harum officiis obcaecati laudantium ad dicta, ex dolorem eaque, dolore sed!
+    </p>
+
+    <!-- javascript by Andri Roni -->
+    <script>
+        document.getElementById('startButton').addEventListener('click', function() {
+            this.style.display = 'none';
+
+            // Pop-up pertama
+            Swal.fire({
+                title: 'Ini pop-up pertama!',
+                text: 'Akan pindah ke pop-up kedua dalam 5 detik.',
+                timer: 5000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+            }).then(() => {
+                // Pop-up kedua
+                return Swal.fire({
+                    title: 'Ini pop-up kedua!',
+                    text: 'Akan pindah ke pop-up ketiga dalam 5 detik.',
+                    timer: 5000,
+                    
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                });
+            }).then(() => {
+                // Pop-up ketiga
+                return Swal.fire({
+                    title: 'Ini pop-up ketiga!',
+                    text: 'Akan pindah ke halaman statis dalam 5 detik.',
+                    timer: 5000,
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                });
+            }).then(() => {
+                // Menampilkan halaman statis
+                
+                document.getElementById('staticPage').classList.remove('hidden');
+                
+                document.getElementById('tidakMauButton').addEventListener('click', function() {
+                    
+                });
+
+                document.getElementById('mauButton').addEventListener('click', function() {
+                    document.getElementById('staticPage').style.display = 'none';
+                    Swal.fire({
+                        title: 'Pop-up kelima',
+                        text: 'Anda telah memilih "Mau".',
+                        confirmButtonText: 'Oke'
+                    }).then(() => {
+                        document.getElementById('staticPage1').classList.remove('hidden');
+                    });
+                });
+            });
+        });
+        
+    </script>
+</body>
+</html>

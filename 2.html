@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="myButton">Klik Saya</button>
+
+    <script>
+        document.getElementById('myButton').addEventListener('click', function() {
+            // Pop-up pertama
+            Swal.fire({
+                title: 'Pop-up Pertama',
+                text: 'Ini adalah pop-up pertama',
+                timer: 5000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+            });
+    
+            setTimeout(function() {
+                // Pop-up kedua
+                Swal.fire({
+                    title: 'Pop-up Kedua',
+                    text: 'Ini adalah pop-up kedua',
+                    timer: 5000,
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                });
+    
+                setTimeout(function() {
+                    // Pop-up ketiga
+                    Swal.fire({
+                        title: 'Pop-up Ketiga',
+                        text: 'Ini adalah pop-up ketiga',
+                        timer: 5000,
+                        timerProgressBar: true,
+                        showConfirmButton: false
+                    });
+    
+                    setTimeout(function() {
+                        // Pop-up keempat dengan tombol konfirmasi
+                        Swal.fire({
+                            title: 'Pop-up Keempat',
+                            text: 'Ini adalah pop-up keempat',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes',
+                            cancelButtonText: 'No',
+                            showCloseButton: false,
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                const cancelButton = Swal.getCancelButton();
+                                cancelButton.addEventListener('click', (event) => {
+                                    event.stopPropagation(); // Menghentikan propagasi event
+                                    cancelButton.style.display = 'none'; // Menyembunyikan tombol Close
+                                });
+
+                            }
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Pop-up kelima jika menekan tombol Yes
+                                Swal.fire({
+                                    title: 'Pop-up Kelima',
+                                    text: 'Anda memilih Yes',
+                                    icon: 'success'
+                                });
+                            }
+                        });
+                    }, 5000); // Interval waktu untuk beralih ke pop-up keempat
+                }, 5000); // Interval waktu untuk beralih ke pop-up ketiga
+            }, 5000); // Interval waktu untuk beralih ke pop-up kedua
+        });
+    </script>    
+    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

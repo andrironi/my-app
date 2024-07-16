@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Webpage</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://www.randomfavicon.com/images/favicons/random-favicon-16x16.png">
+</head>
+
+<body>
+<button id="timerInterval" onclick="timerInterval()">Start Timer</button>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+const timerInterval = document.getElementById('timerInterval');
+
+timerInterval.addEventListener('click', () => {
+timerInterval.style.display = 'none';
+        // Pop-up pertama
+        Swal.fire({
+            title: 'Pop-up Pertama',
+            text: 'Ini adalah pop-up pertama',
+            timer: 5000,
+            timerProgressBar: false,
+            showConfirmButton: false
+        });
+
+        setTimeout(() => {
+            // Pop-up kedua
+            Swal.fire({
+                title: 'Pop-up Kedua',
+                text: 'Ini adalah pop-up kedua',
+                timer: 5000,
+                timerProgressBar: true,
+                showConfirmButton: false
+            });
+
+            setTimeout(() => {
+                // Pop-up ketiga
+                Swal.fire({
+                    title: 'Pop-up Ketiga',
+                    text: 'Ini adalah pop-up ketiga',
+                    timer: 5000,
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                });
+
+            }, 5000); // Interval waktu untuk beralih ke pop-up ketiga
+        }, 5000); // Interval waktu untuk beralih ke pop-up kedua
+    });
+
+</script>
+</body>
+</html>

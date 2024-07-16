@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="startButton">Mulai</button>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        document.getElementById('startButton').addEventListener('click', function() {
+            this.style.display = 'none';
+    
+            // Pop-up pertama
+            swal({
+                title: "Good job!",
+                text: "You clicked the button!",
+                timer: 5000,
+                className: 'popup-1',
+                button: false,
+                }).then(() => {
+                // Pop-up kedua
+                return Swal({
+                    title: 'Ini pop-up kedua!',
+                    text: 'Akan pindah ke pop-up ketiga dalam 5 detik.',
+                    timer: 5000,
+                    className: 'popup-2',
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                });
+            });
+        });
+        </script>
+</body>
+</html>
+
